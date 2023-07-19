@@ -1,2 +1,40 @@
-config:
-  info: "master branch,springcloud-config/config-prod.yml version=1" 
+spring:
+  profiles:
+    active: dev
+
+---
+server:
+  port: 8201
+
+spring:
+  profiles: dev
+  application:
+    name: microcloud-config-client
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:9001/eureka/
+  register-with-eureka: false
+
+info:
+  app.name: microcloud-config-client-dev
+  company.name: www.tuling.com
+
+---
+server:
+  port: 8102
+spring:
+  profiles: beta
+  application:
+    name: microcloud-config-client-beta
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:9001/eureka/
+  register-with-eureka: false
+
+info:
+  app.name: microcloud-config-client-dev
+  company.name: www.tulingBate.com
