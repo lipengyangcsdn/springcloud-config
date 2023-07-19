@@ -1,13 +1,54 @@
+# spring:
+#   profiles:
+#     active: dev
+# ---
+# spring:
+#   profiles: dev
+#   application:
+#     name: microconfig-test-dev
+# ---
+# spring:
+#   profiles: default
+#   application:
+#     name: mircroconfig-test-default
+
 spring:
   profiles:
     active: dev
+
 ---
+server:
+  port: 8201
+
 spring:
   profiles: dev
   application:
-    name: microconfig-test-dev
+    name: microcloud-config-client
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:9001/eureka/
+  register-with-eureka: false
+
+info:
+  app.name: microcloud-config-client-dev
+  company.name: www.tuling.com
+
 ---
+server:
+  port: 8102
 spring:
-  profiles: default
+  profiles: beta
   application:
-    name: mircroconfig-test-default
+    name: microcloud-config-client-beta
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:123456@localhost:9001/eureka/
+  register-with-eureka: false
+
+info:
+  app.name: microcloud-config-client-dev
+  company.name: www.tulingBate.com
